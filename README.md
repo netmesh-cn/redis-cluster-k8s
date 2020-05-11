@@ -2,6 +2,8 @@
 * 生成StatefulSet：`kubectl create -f redis-sts.yaml`
 * 生成Service：`kubectl create -f redis-svc.yaml`
 * 启动redis集群：`kubectl exec -it redis-cluster-0 -- redis-cli --cluster create --cluster-replicas 1 $(kubectl get pods -l app=redis-cluster -o jsonpath='{range.items[*]}{.status.podIP}:6379 ')`
+或者手工执行
+redis-cli --cluster create --cluster-replicas 1 172.18.66.92:6379 172.18.48.203:6379 172.18.78.157:6379 172.18.48.67:6379 172.18.148.1:6379 172.18.62.197:6379
 
 # 说明
 * 需要使用`StorageClass`动态创建pv
